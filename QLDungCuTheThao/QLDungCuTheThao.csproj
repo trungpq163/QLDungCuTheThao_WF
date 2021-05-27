@@ -92,6 +92,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllNhanVienModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Program.cs" />
@@ -100,6 +101,8 @@
     <Compile Include="Services\Common\ICrudService.cs" />
     <Compile Include="Services\Employees\EmployeeService.cs" />
     <Compile Include="Services\Employees\IEmployeeService.cs" />
+    <Compile Include="Services\GetAllNhanVien\GetAllNhanVienService.cs" />
+    <Compile Include="Services\GetAllNhanVien\IGetAllNhanVienService.cs" />
     <Compile Include="Services\ProductsDetail\IProductsDetailService.cs" />
     <Compile Include="Services\ProductsDetail\ProductsDetailService.cs" />
     <Compile Include="Services\Products\IProductsService.cs" />
@@ -108,6 +111,9 @@
     <Compile Include="Services\Sercurity\LoginService.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WorkingContext.cs" />
+    <EmbeddedResource Include="AdminForm.resx">
+      <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>

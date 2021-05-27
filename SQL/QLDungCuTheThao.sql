@@ -297,8 +297,6 @@ insert into BillDetail(Bill, ProductDetail, Quantity, CurrentUnitPrice) values (
 insert into BillDetail(Bill, ProductDetail, Quantity, CurrentUnitPrice) values (4, 3, 15, 14200);
 go
 
-
---v
 -- tao tai khoan
 create proc sp_TaoTaiKhoan (@LGNAME nvarchar(50), @PASS nvarchar(50), @USERNAME nvarchar(50), @ROLE nvarchar(50))
 as
@@ -348,8 +346,6 @@ as
 		where UID = (select groupuid from sys.sysmembers where memberuid = (select uid from sys.sysusers where Name = @Id))
 	end
 go
---
-
 
 -- thu tuc xem chi tiet tat ca san pham
 create procedure sp_ChitietTatCaSP 
@@ -364,232 +360,14 @@ create procedure sp_ChitietTatCaSP
 	end
 go
 
--- thu tuc them xoa sua chen chi tiet san pham
--- them
-create procedure sp_Insert_ChitietSP(@Product int, @Branch int, @Size char(5), @Quantity int, @ProductDescription nvarchar(50))
-as
-	begin
-		insert into ProductDetail(Product, Branch, Size, Quantity, ProductDescription)
-		values (@Product, @Branch, @Size, @Quantity, @ProductDescription)
-	end
-go
-
--- xoa
-create procedure sp_Delete_ChitietSP(@ID int)
-as
-	begin
-		delete from ProductDetail where ID=@ID
-	end
-go
-
--- sua
-create procedure sp_Update_ChitietSP(@ID int = 0, @Branch int, @Product int, @Size char(5), @Quantity int, @ProductDescription nvarchar(50))
-as
-	begin
-		update ProductDetail
-		set Product=@Product, Branch=@Branch, Size=@Size, Quantity=@Quantity, ProductDescription=@ProductDescription
-		where ID=@ID
-	end
-go
-
--- thu tuc so luong ton kho cho moi size (neu sanpham la quanao)
-create procedure sp_SL_TonKho_SizeSP(@Size char(5))
-as
-	begin
-		select sum(Quantity) as 'SLTonKho' from ProductDetail where ProductDetail.Size=@Size;
-	end
-go
-
--- thu tuc so luong ton kho (neu sanpham khong phai la quanao)
-create procedure sp_SL_TonKho_SP
-as
-	begin
-		select sum(Quantity) as 'SLTonKho' from ProductDetail where ProductDescription not like N'%size%';
-	end
-go
-
--- thu tuc xem chi tiet thong tin nhan vien
-create procedure sp_CT_NhanVien(@FullName nvarchar(30))
-as
-	begin
-		select * from Employee where Employee.FullName = @FullName
-	end
-go
-
--- thu tuc so luong hang da ban va doanh thu cua cua hang hoac tung chi nhanh (Bui Thi Xuan va Hoa Binh)
-create procedure sp_SL_HangDaBan_DoanhThu(@BranchId int = 0)
-as
-	begin
-		-- Cua Hang(Gom 2 Chi Nhanh)
-		if @BranchId = 0
-			begin
-				select sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill;
-			end
-		-- Chi Nhanh Bui Thi Xuan (1) hoac Chi Nhanh Hoa Binh (2)
-		if @BranchId = 1 or @BranchId = 2
-			begin
-				select sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill
-				where Bill.Employee in (select Employee.ID from Employee where Employee.Branch=@BranchId);
-			end
-	end
-go
-
--- thu tuc so luong hang da ban va doanh thu cua cua hang hoac tung chi nhanh (Bui Thi Xuan va Hoa Binh) theo tung thang
-create procedure sp_SL_HangDaBan_DoanhThu_Thang(@BranchId int = 0, @Month nvarchar(2))
-as
-	begin
-		-- Cua Hang(Gom 2 Chi Nhanh)
-		if @BranchId = 0
-			begin
-				select sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill
-				where DATEPART(MM,[CheckoutDate])=@Month;
-			end
-		-- Chi Nhanh Bui Thi Xuan (1) hoac Chi Nhanh Hoa Binh (2)
-		if @BranchId = 1 or @BranchId = 2
-			begin
-				select sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill
-				where Bill.Employee in (select Employee.ID from Employee where Employee.Branch=@BranchId)
-				and DATEPART(MM,[CheckoutDate])=@Month;
-			end
-	end
-go
-
--- thu tuc danh sach cac mat hang da ban
-create procedure sp_DS_ChiTiet_MatHangDaBan
-as
-	begin
-		select Name, BillDetail.Quantity, CurrentUnitPrice, Size, ProductDescription, Price, Manufacturer from BillDetail 
-		join ProductDetail 
-		on BillDetail.ProductDetail = ProductDetail.ID
-		join Product on Product.ID = ProductDetail.Product;
-	end
-go
-
--- thong ke
--- nhan vien ban duoc nhieu hang nhat theo chi nhanh hoac ca cong ty
-create procedure sp_NhanVien_BanMatHangNhieuNhat(@Branch int = 0)
-as
-	begin
-		-- ca 2 chi nhanh
-		if @Branch = 0
-			begin
-				select top 1 sum(BillDetail.Quantity) as 'Quantity', Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill
-				join Employee on Bill.Employee = Employee.ID
-				group by Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
-				order by Quantity desc;
-			end
-
-		-- chi nhanh 1 or chi nhanh 2
-		if @Branch = 1 or @Branch = 2
-			begin
-				select top 1 sum(BillDetail.Quantity) as 'Quantity', Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
-				from BillDetail 
-				join Bill on Bill.ID = BillDetail.Bill
-				join Employee on Bill.Employee = Employee.ID
-				where Employee.Branch = @Branch
-				group by Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
-				order by Quantity desc;
-			end
-	end
-go
-
--- nhan vien khong ban duoc san pham nao theo chi nhanh hoac ca cong ty
-create procedure sp_NhanVien_KhongBanDuocHang(@Branch int = 0)
-as
-	begin
-		-- ca 2 chi nhanh
-		if @Branch = 0
-			begin
-				select *
-				from Employee
-				where Employee.ID not in (select Bill.Employee from Bill) and Employee.Position = N'Nhân viên bán hàng'
-			end
-
-		-- chi nhanh 1 or chi nhanh 2
-		if @Branch = 1 or @Branch = 2
-			begin
-				select *
-				from Employee
-				where Employee.ID not in (select Bill.Employee from Bill)
-				and Employee.Branch = @Branch and Employee.Position = N'Nhân viên bán hàng'
-			end
-	end
-go
-
--- cac mat hang ban chay nhat
-create procedure sp_Top3_MatHang_BanChay
-as
-	begin
-		select top 3 sum(BillDetail.Quantity) as 'NumberOfItemsSold', 
-		Product.Name, Product.Manufacturer, Product.Price, Product.ProductCategory, 
-		ProductDetail.ProductDescription, ProductDetail.Quantity, ProductDetail.Size
-		from BillDetail 
-		join Bill on Bill.ID = BillDetail.Bill
-		join ProductDetail on BillDetail.ProductDetail = ProductDetail.ID
-		join Product on Product.ID = ProductDetail.Product
-		group by Product.Name, Product.Manufacturer, Product.Price, Product.ProductCategory, 
-		ProductDetail.ProductDescription, ProductDetail.Quantity, ProductDetail.Size, BillDetail.Quantity
-		order by BillDetail.Quantity desc;
-	end
-go
-
--- thu tuc them bill2
-create procedure sp_Them_HoaDon( 
-	@Employee int, 
-	@Customer nvarchar(30), 
-	@CheckoutDate datetime, 
-	@PhoneNumber int, 
-	@Discount int, 
-	@TotalAmount int,
-	@ProductDetail int,
-	@Quantity int,
-	@CurrentUnitPrice int,
-	@Result INT OUTPUT
-)
-as
-	begin
-		begin try
-			declare @BillID int;
-			insert into Bill(Employee, Customer, CheckoutDate, PhoneNumber, Discount, TotalAmount)
-			values (@Employee, @Customer, @CheckoutDate, @PhoneNumber, @Discount, @TotalAmount)
-
-			select @BillID = ID from Bill 
-			where Bill.CheckoutDate = @CheckoutDate 
-			and Bill.Customer = @Customer
-			and Bill.Employee = @Employee
-			and Bill.TotalAmount = @TotalAmount;
-
-			insert into BillDetail(Bill, ProductDetail, Quantity, CurrentUnitPrice)
-			values (@BillID, @ProductDetail, @Quantity, @CurrentUnitPrice)
-
-			update ProductDetail
-			set Quantity = Quantity - @Quantity
-			where ID = @ProductDetail;
-			set @Result = 1;
-		end try
-		begin catch
-			set @Result = 0;
-		end catch
-	end
-go
-
+-- thu tuc xem tat ca nhan vien 
 create procedure sp_GetAllNhanVien
 as
 	begin
-		select * from [LINK].[QLDungCuTheThao].[dbo].[Employee]
+		select ID, Branch, FullName, DateOfBirth, Address, PhoneNumber, Position, Salary
+		from [LINK].[QuanLyDungCuTheThao].[dbo].[Employee]
 		UNION ALL
-		select * from Employee;
+		select ID, Branch, FullName, DateOfBirth, Address, PhoneNumber, Position, Salary
+		from Employee;
 	end
 go
-
-EXEC sp_addlinkedserver @server = 'LINK' --or may be server ip address

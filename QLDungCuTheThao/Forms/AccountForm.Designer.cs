@@ -60,11 +60,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font(".Helvetica NeueUI", 16.2F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(86, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 34);
+            this.label1.Size = new System.Drawing.Size(90, 33);
             this.label1.TabIndex = 4;
             this.label1.Text = "Hồ sơ";
             // 
@@ -81,40 +81,40 @@
             // lbUsername
             // 
             this.lbUsername.AutoSize = true;
-            this.lbUsername.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbUsername.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUsername.Location = new System.Drawing.Point(86, 287);
             this.lbUsername.Name = "lbUsername";
-            this.lbUsername.Size = new System.Drawing.Size(88, 23);
+            this.lbUsername.Size = new System.Drawing.Size(77, 23);
             this.lbUsername.TabIndex = 6;
             this.lbUsername.Text = "trungpq";
             // 
             // lbDateOfBirth
             // 
             this.lbDateOfBirth.AutoSize = true;
-            this.lbDateOfBirth.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateOfBirth.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDateOfBirth.Location = new System.Drawing.Point(316, 139);
             this.lbDateOfBirth.Name = "lbDateOfBirth";
-            this.lbDateOfBirth.Size = new System.Drawing.Size(115, 23);
+            this.lbDateOfBirth.Size = new System.Drawing.Size(108, 23);
             this.lbDateOfBirth.TabIndex = 7;
             this.lbDateOfBirth.Text = "Ngày sinh: ";
             // 
             // lbBranch
             // 
             this.lbBranch.AutoSize = true;
-            this.lbBranch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBranch.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBranch.Location = new System.Drawing.Point(316, 241);
             this.lbBranch.Name = "lbBranch";
-            this.lbBranch.Size = new System.Drawing.Size(120, 23);
+            this.lbBranch.Size = new System.Drawing.Size(111, 23);
             this.lbBranch.TabIndex = 8;
             this.lbBranch.Text = "Chi nhánh: ";
             // 
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbName.Location = new System.Drawing.Point(316, 88);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(82, 23);
+            this.lbName.Size = new System.Drawing.Size(80, 23);
             this.lbName.TabIndex = 9;
             this.lbName.Text = "Họ tên: ";
             // 
@@ -133,30 +133,30 @@
             // lbPhone
             // 
             this.lbPhone.AutoSize = true;
-            this.lbPhone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPhone.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPhone.Location = new System.Drawing.Point(316, 343);
             this.lbPhone.Name = "lbPhone";
-            this.lbPhone.Size = new System.Drawing.Size(134, 23);
+            this.lbPhone.Size = new System.Drawing.Size(135, 23);
             this.lbPhone.TabIndex = 11;
             this.lbPhone.Text = "Số điện thoại: ";
             // 
             // lbPosition
             // 
             this.lbPosition.AutoSize = true;
-            this.lbPosition.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPosition.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPosition.Location = new System.Drawing.Point(316, 190);
             this.lbPosition.Name = "lbPosition";
-            this.lbPosition.Size = new System.Drawing.Size(64, 23);
+            this.lbPosition.Size = new System.Drawing.Size(60, 23);
             this.lbPosition.TabIndex = 12;
             this.lbPosition.Text = "Vị trí: ";
             // 
             // lbSalary
             // 
             this.lbSalary.AutoSize = true;
-            this.lbSalary.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSalary.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSalary.Location = new System.Drawing.Point(316, 292);
             this.lbSalary.Name = "lbSalary";
-            this.lbSalary.Size = new System.Drawing.Size(73, 23);
+            this.lbSalary.Size = new System.Drawing.Size(83, 23);
             this.lbSalary.TabIndex = 14;
             this.lbSalary.Text = "Lương: ";
             // 
