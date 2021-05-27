@@ -194,23 +194,36 @@ namespace QLDungCuTheThao
             if (e.Button == MouseButtons.Right)
             {
                 ContextMenu m = new ContextMenu();
+                string moveBranch = "";
+
+                if (WorkingContext.Instance.CurrentBranch == "Bùi Thị Xuân")
+                {
+                    moveBranch = "Hòa Bình";
+                }
+
+                if (WorkingContext.Instance.CurrentBranch == "Hòa Bình")
+                {
+                    moveBranch = "Bùi Thị Xuân";
+                }
 
                 int currentMouseOverRow = dgvEmployees.HitTest(e.X, e.Y).RowIndex;
 
                 if (currentMouseOverRow >= 0)
                 {
-                    m.MenuItems.Add(new MenuItem("Chuyen chi nhanh", MenuItem_Click));
+                    m.MenuItems.Add(new MenuItem("Chuyển nhân viên này sang chi nhánh " + moveBranch, MenuItem_Click));
                 }
 
                 m.Show(dgvEmployees, new Point(e.X, e.Y));
-
             }
         }
 
         private void MenuItem_Click(object sender, EventArgs e)
         {
-            
-            MessageBox.Show("OK");
+            if (txtID.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
+                return;
+            }
         }
     }
 }
