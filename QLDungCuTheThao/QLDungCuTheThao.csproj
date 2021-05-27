@@ -95,6 +95,7 @@
     <Compile Include="Models\GetAllNhanVienModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
+    <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Common\CrudService.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Services\Products\ProductsService.cs" />
     <Compile Include="Services\Sercurity\IAuthenticateService.cs" />
     <Compile Include="Services\Sercurity\LoginService.cs" />
+    <Compile Include="Services\TaoTaiKhoan\ITaoTaiKhoanService.cs" />
+    <Compile Include="Services\TaoTaiKhoan\TaoTaiKhoanService.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="WorkingContext.cs" />
     <EmbeddedResource Include="AdminForm.resx">

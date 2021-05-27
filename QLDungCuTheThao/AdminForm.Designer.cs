@@ -53,7 +53,18 @@
             this.pbBack = new System.Windows.Forms.PictureBox();
             this.lbBranch = new System.Windows.Forms.Label();
             this.cbbBranch = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnCreate = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtLoginName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtBranch = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtPosition = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
@@ -75,8 +86,10 @@
             this.dgvEmployees.Location = new System.Drawing.Point(32, 118);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowTemplate.Height = 24;
-            this.dgvEmployees.Size = new System.Drawing.Size(749, 362);
+            this.dgvEmployees.Size = new System.Drawing.Size(749, 698);
             this.dgvEmployees.TabIndex = 0;
+            this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
+            this.dgvEmployees.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvEmployees_MouseClick);
             // 
             // ID
             // 
@@ -265,15 +278,132 @@
             this.cbbBranch.Name = "cbbBranch";
             this.cbbBranch.Size = new System.Drawing.Size(200, 23);
             this.cbbBranch.TabIndex = 8;
+            this.cbbBranch.SelectionChangeCommitted += new System.EventHandler(this.cbbBranch_SelectionChangeCommitted);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font(".Helvetica NeueUI", 16.2F);
+            this.label4.Location = new System.Drawing.Point(987, 57);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(228, 33);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Tạo tài khoản ^^";
+            // 
+            // btnCreate
+            // 
+            this.btnCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnCreate.FlatAppearance.BorderSize = 0;
+            this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreate.Font = new System.Drawing.Font(".Helvetica NeueUI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCreate.ForeColor = System.Drawing.Color.White;
+            this.btnCreate.Location = new System.Drawing.Point(858, 456);
+            this.btnCreate.Name = "btnCreate";
+            this.btnCreate.Size = new System.Drawing.Size(500, 36);
+            this.btnCreate.TabIndex = 48;
+            this.btnCreate.Text = "Tạo";
+            this.btnCreate.UseVisualStyleBackColor = false;
+            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(982, 391);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(376, 31);
+            this.txtPassword.TabIndex = 53;
+            // 
+            // txtLoginName
+            // 
+            this.txtLoginName.Enabled = false;
+            this.txtLoginName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLoginName.Location = new System.Drawing.Point(982, 327);
+            this.txtLoginName.Multiline = true;
+            this.txtLoginName.Name = "txtLoginName";
+            this.txtLoginName.Size = new System.Drawing.Size(376, 31);
+            this.txtLoginName.TabIndex = 52;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(883, 73);
+            this.label3.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(854, 391);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 17);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 23);
+            this.label3.TabIndex = 51;
+            this.label3.Text = "Mật khẩu:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(854, 330);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 23);
+            this.label5.TabIndex = 50;
+            this.label5.Text = "Username:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(854, 145);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(105, 23);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "Chi nhánh:";
+            // 
+            // txtBranch
+            // 
+            this.txtBranch.Enabled = false;
+            this.txtBranch.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBranch.Location = new System.Drawing.Point(982, 142);
+            this.txtBranch.Multiline = true;
+            this.txtBranch.Name = "txtBranch";
+            this.txtBranch.Size = new System.Drawing.Size(376, 31);
+            this.txtBranch.TabIndex = 54;
+            // 
+            // txtID
+            // 
+            this.txtID.Enabled = false;
+            this.txtID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(982, 203);
+            this.txtID.Multiline = true;
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(376, 31);
+            this.txtID.TabIndex = 56;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(854, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(37, 23);
+            this.label7.TabIndex = 55;
+            this.label7.Text = "Id: ";
+            // 
+            // txtPosition
+            // 
+            this.txtPosition.Enabled = false;
+            this.txtPosition.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPosition.Location = new System.Drawing.Point(982, 263);
+            this.txtPosition.Multiline = true;
+            this.txtPosition.Name = "txtPosition";
+            this.txtPosition.Size = new System.Drawing.Size(376, 31);
+            this.txtPosition.TabIndex = 58;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Helvetica Neue", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(854, 266);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 23);
+            this.label8.TabIndex = 57;
+            this.label8.Text = "Vị trí: ";
             // 
             // AdminForm
             // 
@@ -281,7 +411,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1449, 828);
+            this.Controls.Add(this.txtPosition);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtBranch);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtLoginName);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cbbBranch);
             this.Controls.Add(this.lbBranch);
             this.Controls.Add(this.pbBack);
@@ -331,6 +472,17 @@
         private System.Windows.Forms.ToolStripMenuItem quantityOfItemSellAndRevenueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listItemsSoldToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbbBranch;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtLoginName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtBranch;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtPosition;
+        private System.Windows.Forms.Label label8;
     }
 }
