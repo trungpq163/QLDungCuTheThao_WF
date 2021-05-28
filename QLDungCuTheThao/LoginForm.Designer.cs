@@ -141,6 +141,7 @@
             this.cbbBranch.Name = "cbbBranch";
             this.cbbBranch.Size = new System.Drawing.Size(193, 31);
             this.cbbBranch.TabIndex = 8;
+            this.cbbBranch.SelectionChangeCommitted += new System.EventHandler(this.cbbBranch_SelectionChangeCommitted);
             // 
             // pbExit
             // 

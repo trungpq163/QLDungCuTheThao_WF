@@ -65,6 +65,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtPosition = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnReload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
@@ -227,7 +228,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font(".Helvetica NeueUI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(491, 76);
+            this.label2.Location = new System.Drawing.Point(282, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 4;
@@ -274,9 +275,9 @@
             this.cbbBranch.Items.AddRange(new object[] {
             "Bùi Thị Xuân",
             "Hòa Bình"});
-            this.cbbBranch.Location = new System.Drawing.Point(581, 75);
+            this.cbbBranch.Location = new System.Drawing.Point(372, 76);
             this.cbbBranch.Name = "cbbBranch";
-            this.cbbBranch.Size = new System.Drawing.Size(200, 23);
+            this.cbbBranch.Size = new System.Drawing.Size(243, 23);
             this.cbbBranch.TabIndex = 8;
             this.cbbBranch.SelectionChangeCommitted += new System.EventHandler(this.cbbBranch_SelectionChangeCommitted);
             // 
@@ -405,12 +406,28 @@
             this.label8.TabIndex = 57;
             this.label8.Text = "Vị trí: ";
             // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnReload.FlatAppearance.BorderSize = 0;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font(".Helvetica NeueUI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Location = new System.Drawing.Point(621, 69);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(160, 36);
+            this.btnReload.TabIndex = 59;
+            this.btnReload.Text = "Tải lại";
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1449, 828);
+            this.Controls.Add(this.btnReload);
             this.Controls.Add(this.txtPosition);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtID);
@@ -484,5 +501,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtPosition;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnReload;
     }
 }

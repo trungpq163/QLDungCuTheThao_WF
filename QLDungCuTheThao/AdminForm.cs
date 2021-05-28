@@ -1,8 +1,11 @@
 ﻿using QLDungCuTheThao.Controllers;
 using QLDungCuTheThao.EntityDataModel;
+using QLDungCuTheThao.Models;
+using QLDungCuTheThao.Services.ChuyenChiNhanh;
 using QLDungCuTheThao.Services.Employees;
 using QLDungCuTheThao.Services.GetAllNhanVien;
 using QLDungCuTheThao.Services.TaoTaiKhoan;
+using QLDungCuTheThao.Services.XoaTaiKhoan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +24,8 @@ namespace QLDungCuTheThao
         private Employee _employeeProfile;
         private IGetAllNhanVienService _allEmployeeService;
         private ITaoTaiKhoanService _taoTaiKhoan;
+        private IXoaTaiKhoanService _xoaTaiKhoan;
+        private IChuyenChiNhanhService _chuyenChiNhanh;
 
         public AdminForm(IUnitOfWork unitOfWork, Employee employeeProfile)
         {
@@ -28,6 +33,8 @@ namespace QLDungCuTheThao
             _employeeProfile = employeeProfile;
             _allEmployeeService = new GetAllNhanVienService(_unitOfWork);
             _taoTaiKhoan = new TaoTaiKhoanService(_unitOfWork);
+            _chuyenChiNhanh = new ChuyenChiNhanhService(_unitOfWork);
+            _xoaTaiKhoan = new XoaTaiKhoanService(_unitOfWork);
             InitializeComponent();
         }
 
@@ -40,7 +47,9 @@ namespace QLDungCuTheThao
         {
             try
             {
-                Employee_Data_Load();
+                var allEmployeeData = _allEmployeeService.getAllNhanVien().ToList();
+                var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+                Employee_Data_Load(allEmployeeData2);
             }
             catch (Exception ex)
             {
@@ -49,7 +58,7 @@ namespace QLDungCuTheThao
             }
         }
 
-        private void Employee_Data_Load()
+        private void Employee_Data_Load(List<GetAllNhanVienModel> listNhanVien)
         {
             int branchID = 0;
 
@@ -68,8 +77,7 @@ namespace QLDungCuTheThao
                     branchID = 2;
                 }
 
-                var allEmployeeData = _allEmployeeService.getAllNhanVien().ToList().FindAll(x => x.Branch == branchID);
-                dgvEmployees.DataSource = allEmployeeData;
+                dgvEmployees.DataSource = listNhanVien.FindAll(x => x.Branch == branchID);
             } else
             {
                 if (cbbBranch.Text == "Bùi Thị Xuân")
@@ -85,12 +93,10 @@ namespace QLDungCuTheThao
                 if (branchID == 0)
                 {
                     cbbBranch.Text = "Bùi Thị Xuân";
-                    var allEmployeeData = _allEmployeeService.getAllNhanVien().ToList().FindAll(x => x.Branch == 1);
-                    dgvEmployees.DataSource = allEmployeeData;
+                    dgvEmployees.DataSource = listNhanVien.FindAll(x => x.Branch == 1); 
                 } else
                 {
-                    var allEmployeeData = _allEmployeeService.getAllNhanVien().ToList().FindAll(x => x.Branch == branchID);
-                    dgvEmployees.DataSource = allEmployeeData;
+                    dgvEmployees.DataSource = listNhanVien.FindAll(x => x.Branch == branchID);
                 }
             }            
         }
@@ -105,7 +111,8 @@ namespace QLDungCuTheThao
 
         private void cbbBranch_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Employee_Data_Load();
+            var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+            Employee_Data_Load(allEmployeeData2);
         }
 
         private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -210,20 +217,96 @@ namespace QLDungCuTheThao
 
                 if (currentMouseOverRow >= 0)
                 {
-                    m.MenuItems.Add(new MenuItem("Chuyển nhân viên này sang chi nhánh " + moveBranch, MenuItem_Click));
+                    m.MenuItems.Add(new MenuItem("Chuyển nhân viên này sang chi nhánh " + moveBranch, ShowDialogForSure100Percent));
                 }
 
                 m.Show(dgvEmployees, new Point(e.X, e.Y));
             }
         }
 
+        private void ShowDialogForSure100Percent(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Bạn có chắc chắc không? Sau khi chuyển sang chi nhánh mới, tài khoản đăng nhập của người này sẽ bị xóa");
+
+            if (dialog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Cancel thanh cong! ^^");
+                return;
+            }
+
+            if (dialog == DialogResult.OK)
+            {
+                MenuItem_Click(sender, e);
+            }
+        }
+
         private void MenuItem_Click(object sender, EventArgs e)
         {
+            string moveBranchId = "";
+
             if (txtID.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
                 return;
             }
+
+            if (txtBranch.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
+                return;
+            }
+
+            if (txtBranch.Text == "Bùi Thị Xuân")
+            {
+                moveBranchId = "2";
+            }
+
+            if (txtBranch.Text == "Hòa Bình")
+            {
+                moveBranchId = "1";
+            }
+
+            try
+            {
+                var chuyenChiNhanh = _chuyenChiNhanh.ChuyenChiNhanh(moveBranchId, txtID.Text);
+                var xoaTaiKhoan = _xoaTaiKhoan.XoaTaiKhoan(txtLoginName.Text, txtID.Text);
+
+                if (chuyenChiNhanh.Result == 1 && xoaTaiKhoan.Result == 1)
+                {
+                    MessageBox.Show("Chuyen thanh cong! ^^");
+
+                    var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+                    Employee_Data_Load(allEmployeeData2);
+
+                    return;
+                } else if (chuyenChiNhanh.Result == 1 && xoaTaiKhoan.Result == 0)
+                {
+                    MessageBox.Show("Chuyen thanh cong! ^^");
+
+                    var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+                    Employee_Data_Load(allEmployeeData2);
+
+                    return;
+                } else
+                {
+                    MessageBox.Show("Chuyen that bai! ^^");
+
+                    var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+                    Employee_Data_Load(allEmployeeData2);
+
+                    return;
+                }
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Co loi xay ra" + ex.Message.ToString());
+            }
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+            Employee_Data_Load(allEmployeeData2);
         }
     }
 }

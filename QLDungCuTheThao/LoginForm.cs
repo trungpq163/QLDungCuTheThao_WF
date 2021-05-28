@@ -73,5 +73,20 @@ namespace QLDungCuTheThao
                 this.Close();
             }
         }
+
+        private void cbbBranch_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int branchId = cbbBranch.SelectedIndex + 1;
+            if (branchId == 2)
+            {
+                txtLoginName.Text = "pqtrung";
+                txtPassword.Text = "trung123";
+            }
+            if (branchId == 1)
+            {
+                txtLoginName.Text = "hlthanh";
+                txtPassword.Text = "shin123";
+            }
+        }
     }
 }
