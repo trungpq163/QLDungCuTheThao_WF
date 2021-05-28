@@ -1,4 +1,4 @@
-USE QLDungCuTheThao
+USE QuanLyDungCuTheThao
 GO
 
 DECLARE	@return_value int
@@ -36,3 +36,16 @@ EXEC	@return_value = [dbo].[sp_TaoTaiKhoan]
 SELECT	'Return Value' = @return_value
 
 GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[sp_TaoTaiKhoan]
+		@LGNAME = N'ltquang',
+		@PASS = N'quang123',
+		@USERNAME = N'8',
+		@ROLE = N'NHANVIEN'
+
+SELECT	'Return Value' = @return_value
+
+GO
+select * from Employee;

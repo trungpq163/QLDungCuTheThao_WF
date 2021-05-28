@@ -30,14 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dgvProduct = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Manufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiAdmin = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +66,14 @@
             this.tsslLoginName = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslBranch = new System.Windows.Forms.ToolStripStatusLabel();
             this.tsslGroup = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Manufacturer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
@@ -93,65 +93,17 @@
             this.dgvProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.ProductName,
+            this.ProductDescription,
+            this.Price,
+            this.Quantity,
             this.Category,
             this.Manufacturer,
-            this.Price,
-            this.Size,
-            this.Quantity,
-            this.ProductDescription});
+            this.Size});
             this.dgvProduct.Location = new System.Drawing.Point(12, 117);
             this.dgvProduct.Name = "dgvProduct";
             this.dgvProduct.RowTemplate.Height = 24;
             this.dgvProduct.Size = new System.Drawing.Size(865, 683);
             this.dgvProduct.TabIndex = 0;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "Name";
-            this.ProductName.HeaderText = "Tên sản phẩm";
-            this.ProductName.Name = "ProductName";
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Danh mục";
-            this.Category.Name = "Category";
-            // 
-            // Manufacturer
-            // 
-            this.Manufacturer.DataPropertyName = "Manufacturer";
-            this.Manufacturer.HeaderText = "Nhà sản xuất";
-            this.Manufacturer.Name = "Manufacturer";
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Giá ";
-            this.Price.Name = "Price";
-            // 
-            // Size
-            // 
-            this.Size.DataPropertyName = "Size";
-            this.Size.HeaderText = "Size";
-            this.Size.Name = "Size";
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Số lượng";
-            this.Quantity.Name = "Quantity";
-            // 
-            // ProductDescription
-            // 
-            this.ProductDescription.DataPropertyName = "ProductDescription";
-            this.ProductDescription.HeaderText = "Chi tiết sản phẩm";
-            this.ProductDescription.Name = "ProductDescription";
             // 
             // menuStrip1
             // 
@@ -191,14 +143,14 @@
             // accountDetailToolStripMenuItem
             // 
             this.accountDetailToolStripMenuItem.Name = "accountDetailToolStripMenuItem";
-            this.accountDetailToolStripMenuItem.Size = new System.Drawing.Size(238, 28);
+            this.accountDetailToolStripMenuItem.Size = new System.Drawing.Size(242, 28);
             this.accountDetailToolStripMenuItem.Text = "Chi tiết tài khoản";
             this.accountDetailToolStripMenuItem.Click += new System.EventHandler(this.accountDetailToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
             // 
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(238, 28);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(242, 28);
             this.logOutToolStripMenuItem.Text = "Đăng xuất";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -267,7 +219,7 @@
             this.label3.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
             this.label3.Location = new System.Drawing.Point(18, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 15);
+            this.label3.Size = new System.Drawing.Size(50, 16);
             this.label3.TabIndex = 18;
             this.label3.Text = "Họ tên";
             // 
@@ -277,7 +229,7 @@
             this.label4.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
             this.label4.Location = new System.Drawing.Point(18, 67);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 15);
+            this.label4.Size = new System.Drawing.Size(91, 16);
             this.label4.TabIndex = 19;
             this.label4.Text = "Số điện thoại";
             // 
@@ -385,7 +337,7 @@
             this.label5.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
             this.label5.Location = new System.Drawing.Point(18, 68);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 15);
+            this.label5.Size = new System.Drawing.Size(120, 16);
             this.label5.TabIndex = 26;
             this.label5.Text = "Chi tiết sản phẩm";
             // 
@@ -395,7 +347,7 @@
             this.label2.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
             this.label2.Location = new System.Drawing.Point(18, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 15);
+            this.label2.Size = new System.Drawing.Size(74, 16);
             this.label2.TabIndex = 25;
             this.label2.Text = "Sản phẩm";
             // 
@@ -531,6 +483,57 @@
             this.tsslGroup.Size = new System.Drawing.Size(85, 20);
             this.tsslGroup.Text = "Nhóm: ";
             // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 33;
+            // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "Name";
+            this.ProductName.HeaderText = "Tên sản phẩm";
+            this.ProductName.Name = "ProductName";
+            this.ProductName.Width = 125;
+            // 
+            // ProductDescription
+            // 
+            this.ProductDescription.DataPropertyName = "ProductDescription";
+            this.ProductDescription.HeaderText = "Chi tiết sản phẩm";
+            this.ProductDescription.Name = "ProductDescription";
+            this.ProductDescription.Width = 222;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Giá ";
+            this.Price.Name = "Price";
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Số lượng";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Danh mục";
+            this.Category.Name = "Category";
+            // 
+            // Manufacturer
+            // 
+            this.Manufacturer.DataPropertyName = "Manufacturer";
+            this.Manufacturer.HeaderText = "Nhà sản xuất";
+            this.Manufacturer.Name = "Manufacturer";
+            // 
+            // Size
+            // 
+            this.Size.DataPropertyName = "Size";
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -618,11 +621,11 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslGroup;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Manufacturer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Size;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductDescription;
     }
 }

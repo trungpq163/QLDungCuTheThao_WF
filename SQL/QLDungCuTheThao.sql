@@ -371,3 +371,66 @@ as
 		from Employee;
 	end
 go
+
+select * from Employee;
+select * from sys.sysmembers;
+select * from sys.sysusers;
+go
+
+create procedure sp_XoaTaiKhoan (@Username nvarchar(20), @ID nvarchar(10))
+as
+	begin
+		declare @Result int;
+		-- @Result = 0 => err
+		-- @Result = 1 => sucess :D
+
+		begin try
+			exec ('drop login ' + @Username);
+
+			exec ('drop schema ' + '['+@ID+']');
+			exec ('drop user ' + '['+@ID+']');
+
+			set @Result = 1; 
+			SELECT	'Result' = @Result
+			--DROP LOGIN ltquang;
+			--DROP SCHEMA [8];
+			--DROP USER [8];
+		end try
+
+		begin catch
+			set @Result = 0; 
+			SELECT	'Result' = @Result
+		end catch
+	end
+go
+
+create procedure sp_ChuyenChiNhanh (@Branch nvarchar(20), @ID nvarchar(10))
+as
+	begin
+		declare @Result int;
+		-- @Result = 0 => err
+		-- @Result = 1 => sucess :D
+
+		begin try
+			update employee
+			set employee.Branch = @Branch
+			from [LINK2].[QuanLyDungCuTheThao].[dbo].[Employee] employee
+			where employee.ID = @ID
+
+			set @Result = 1; 
+			select 'Result' = @Result
+		end try
+
+		begin catch
+			set @Result = 0; 
+			select 'Result' = @Result
+		end catch
+	end
+go
+
+update employee
+set employee.Branch = 1
+from [LINK2].[QuanLyDungCuTheThao].[dbo].[Employee] employee
+where employee.ID = 8
+
+select * from Employee;
