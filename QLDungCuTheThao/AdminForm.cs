@@ -277,7 +277,7 @@ namespace QLDungCuTheThao
 
                     var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
                     Employee_Data_Load(allEmployeeData2);
-
+                    Reload();
                     return;
                 } else if (chuyenChiNhanh.Result == 1 && xoaTaiKhoan.Result == 0)
                 {
@@ -285,7 +285,7 @@ namespace QLDungCuTheThao
 
                     var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
                     Employee_Data_Load(allEmployeeData2);
-
+                    Reload();
                     return;
                 } else
                 {
@@ -293,7 +293,7 @@ namespace QLDungCuTheThao
 
                     var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
                     Employee_Data_Load(allEmployeeData2);
-
+                    Reload();
                     return;
                 }
 
@@ -307,6 +307,13 @@ namespace QLDungCuTheThao
         {
             var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
             Employee_Data_Load(allEmployeeData2);
+            Reload();
+        }
+
+        private void Reload()
+        {
+            this.Refresh();
+            Application.DoEvents();
         }
     }
 }
