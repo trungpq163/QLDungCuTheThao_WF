@@ -161,5 +161,10 @@ namespace QLDungCuTheThao
             adminForm.ShowDialog();
             this.Close();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

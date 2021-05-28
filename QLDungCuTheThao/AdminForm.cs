@@ -147,52 +147,62 @@ namespace QLDungCuTheThao
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            string role = "";
-            string loginName = txtLoginName.Text;
-            string password = txtPassword.Text;
-            string usernameId = txtID.Text;
-
-            if (password == "")
+            if (_employeeProfile.Position.ToString() == "Quản lý chi nhánh")
             {
-                MessageBox.Show("Vui long nhap mat khau");
+                string role = "";
+                string loginName = txtLoginName.Text;
+                string password = txtPassword.Text;
+                string usernameId = txtID.Text;
+
+                if (password == "")
+                {
+                    MessageBox.Show("Vui long nhap mat khau");
+                    return;
+                }
+
+                if (txtPosition.Text == "Nhân viên bán hàng")
+                {
+                    role = "NHANVIEN";
+                }
+
+                if (txtPosition.Text == "Quản lý chi nhánh")
+                {
+                    role = "QLCHINHANH";
+                }
+
+                if (txtPosition.Text == "Giám đốc chi nhánh")
+                {
+                    role = "GIAMDOC";
+                }
+
+                try
+                {
+                    var result = _taoTaiKhoan.TaoTaiKhoan(loginName, password, usernameId, role);
+                    if (result.Result == 1)
+                    {
+                        MessageBox.Show("LGNAME bi trung");
+                    }
+
+                    if (result.Result == 2)
+                    {
+                        MessageBox.Show("Nhan vien nay da duoc tao tai khoan");
+                    }
+
+                    if (result.Result == 0)
+                    {
+                        MessageBox.Show("Tao tai khoan thanh cong ^^");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Co loi xay ra " + ex.Message.ToString());
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn phải là Quản lý chi nhánh mới có thể thực hiện hành động này!");
                 return;
-            }
-
-            if (txtPosition.Text == "Nhân viên bán hàng")
-            {
-                role = "NHANVIEN";
-            }
-
-            if (txtPosition.Text == "Quản lý chi nhánh")
-            {
-                role = "QLCHINHANH";
-            }
-
-            if (txtPosition.Text == "Giám đốc chi nhánh")
-            {
-                role = "GIAMDOC";
-            }
-
-            try
-            {
-                var result = _taoTaiKhoan.TaoTaiKhoan(loginName, password, usernameId, role);
-                if (result.Result == 1)
-                {
-                    MessageBox.Show("LGNAME bi trung");
-                }
-
-                if (result.Result == 2)
-                {
-                    MessageBox.Show("Nhan vien nay da duoc tao tai khoan");
-                }
-
-                if (result.Result == 0)
-                {
-                    MessageBox.Show("Tao tai khoan thanh cong ^^");
-                }
-            } catch (Exception ex)
-            {
-                MessageBox.Show("Co loi xay ra " + ex.Message.ToString());
             }
         }
 
@@ -226,18 +236,25 @@ namespace QLDungCuTheThao
 
         private void ShowDialogForSure100Percent(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Bạn có chắc chắc không? Sau khi chuyển sang chi nhánh mới, tài khoản đăng nhập của người này sẽ bị xóa");
-
-            if (dialog == DialogResult.Cancel)
+            if (_employeeProfile.Position.ToString() == "Quản lý chi nhánh")
             {
-                MessageBox.Show("Cancel thanh cong! ^^");
-                return;
-            }
+                DialogResult dialog = MessageBox.Show("Bạn có chắc chắc không? Sau khi chuyển sang chi nhánh mới, tài khoản đăng nhập của người này sẽ bị xóa");
 
-            if (dialog == DialogResult.OK)
+                if (dialog == DialogResult.Cancel)
+                {
+                    MessageBox.Show("Cancel thanh cong! ^^");
+                    return;
+                }
+
+                if (dialog == DialogResult.OK)
+                {
+                    MenuItem_Click(sender, e);
+                }
+            } else
             {
-                MenuItem_Click(sender, e);
+                MessageBox.Show("Bạn phải là Quản lý chi nhánh mới có thể thực hiện hành động này!");
             }
+            
         }
 
         private void MenuItem_Click(object sender, EventArgs e)
