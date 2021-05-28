@@ -24,6 +24,14 @@ namespace QLDungCuTheThao
         private IProductsDetailService _productsDetailService;
         private IProductsService _productsService;
 
+        private int _productDetailId = 0;
+        private string _productName = "";
+        private string _productDetail = "";
+        private int _price = 0;
+        private string _size = "";
+        private int _quantity = 0;
+
+
         public MainForm(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -164,7 +172,69 @@ namespace QLDungCuTheThao
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void dgvProduct_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvProduct.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dgvProduct.CurrentRow.Selected = true;
+
+                _productDetailId = Int32.Parse(dgvProduct.Rows[e.RowIndex].Cells["ID"].FormattedValue.ToString());
+                _productName = dgvProduct.Rows[e.RowIndex].Cells["ProductName"].FormattedValue.ToString();
+                _productDetail = dgvProduct.Rows[e.RowIndex].Cells["ProductDescription"].FormattedValue.ToString();
+                _price = Int32.Parse(dgvProduct.Rows[e.RowIndex].Cells["Price"].FormattedValue.ToString());
+                _size = dgvProduct.Rows[e.RowIndex].Cells["Size"].FormattedValue.ToString();
+                _quantity = Int32.Parse(dgvProduct.Rows[e.RowIndex].Cells["Quantity"].FormattedValue.ToString());
+            }
+        }
+
+        private void dgvProduct_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                int currentMouseOverRow = dgvProduct.HitTest(e.X, e.Y).RowIndex;
+
+
+                if (currentMouseOverRow >= 0)
+                {
+                    m.MenuItems.Add(new MenuItem("", ShowDialogForSure100Percent));
+                }
+
+                m.Show(dgvProduct, new Point(e.X, e.Y));
+            }
+        }
+
+        private void ShowDialogForSure100Percent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Menu_Click()
+        {
+            if (_productDetailId == 0
+                || _productName == ""
+                || _productDetail == ""
+                || _price == 0
+                || _size == ""
+                || _quantity == 0
+            )
+            {
+                MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
+                return;
+            }
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Loi" + ex.Message.ToString());
+                return;
+            }
         }
     }
 }

@@ -261,13 +261,7 @@ namespace QLDungCuTheThao
         {
             string moveBranchId = "";
 
-            if (txtID.Text == "")
-            {
-                MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
-                return;
-            }
-
-            if (txtBranch.Text == "")
+            if (txtID.Text == "" || txtBranch.Text == "")
             {
                 MessageBox.Show("Vui lòng chọn tất cả hàng thuộc nhân viên đó, trước khi thực hiện tác vụ này!");
                 return;
