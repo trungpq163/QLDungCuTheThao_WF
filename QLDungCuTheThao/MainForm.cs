@@ -30,6 +30,8 @@ namespace QLDungCuTheThao
         private int _price = 0;
         private string _size = "";
         private int _quantity = 0;
+        private int _quantityOrder = 0;
+        private int _totalAmount = 0;
 
         DataTable dgvChiTietSPTable = new DataTable();
 
@@ -61,6 +63,7 @@ namespace QLDungCuTheThao
 
                 loadDataCbbProducts(dataProducts);
                 loadDataCbbProductDetails(dataProductsDetail);
+                LoadAutomaticBilling();
                 nudQuantity.Maximum = 10;
             }
             catch (Exception ex)
@@ -256,12 +259,18 @@ namespace QLDungCuTheThao
 
                     if (data == _productDetailId.ToString())
                     {
-                        MessageBox.Show("Bạn đã thêm sản phẩm này!");
+                        dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value = Int32.Parse(dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value.ToString()) + 1;
+                        _quantityOrder = Int32.Parse(dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value.ToString());
+                        MessageBox.Show("Bạn đã thêm thành công!");
+                        LoadAutomaticBilling();
                         return;
                     }
                 }
 
                 dgvChiTietSPTable.Rows.Add(_productDetailId, _productDetail, _productDetail, 1, _price, _size);
+                _quantityOrder = 1;
+                LoadAutomaticBilling();
+
                 MessageBox.Show("Bạn đã thêm thành công!");
             }
             catch (Exception ex)
@@ -283,9 +292,36 @@ namespace QLDungCuTheThao
             dgvChiTietSP.DataSource = dgvChiTietSPTable;
         }
 
-        private void dgvChiTietSP_CellValidated(object sender, DataGridViewCellEventArgs e)
+        private void LoadAutomaticBilling()
         {
-           
+            _totalAmount = _totalAmount + (_price * 1);
+            txtTotalAmount.Text = _totalAmount.ToString();
+        }
+
+        private void txtDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDiscount.Text != "")
+            {
+                int discount = Int32.Parse(txtDiscount.Text.ToString());
+                if (_totalAmount > 0 && discount > 0)
+                {
+                    _totalAmount = _totalAmount - discount;
+                    txtTotalAmount.Text = _totalAmount.ToString();
+                }
+            }
         }
     }
 }

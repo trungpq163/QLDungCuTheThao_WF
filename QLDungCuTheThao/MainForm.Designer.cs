@@ -62,8 +62,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtTotalAmount = new System.Windows.Forms.TextBox();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -340,7 +340,6 @@
             this.dgvChiTietSP.RowTemplate.Height = 24;
             this.dgvChiTietSP.Size = new System.Drawing.Size(504, 346);
             this.dgvChiTietSP.TabIndex = 30;
-            this.dgvChiTietSP.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTietSP_CellValidated);
             // 
             // nudQuantity
             // 
@@ -408,8 +407,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox5);
-            this.groupBox3.Controls.Add(this.textBox4);
+            this.groupBox3.Controls.Add(this.txtTotalAmount);
+            this.groupBox3.Controls.Add(this.txtDiscount);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
@@ -422,19 +421,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tổng kết";
             // 
-            // textBox5
+            // txtTotalAmount
             // 
-            this.textBox5.Location = new System.Drawing.Point(166, 90);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(355, 25);
-            this.textBox5.TabIndex = 36;
+            this.txtTotalAmount.Enabled = false;
+            this.txtTotalAmount.Location = new System.Drawing.Point(166, 90);
+            this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.Size = new System.Drawing.Size(355, 25);
+            this.txtTotalAmount.TabIndex = 36;
             // 
-            // textBox4
+            // txtDiscount
             // 
-            this.textBox4.Location = new System.Drawing.Point(166, 61);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(355, 25);
-            this.textBox4.TabIndex = 35;
+            this.txtDiscount.Location = new System.Drawing.Point(166, 61);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(355, 25);
+            this.txtDiscount.TabIndex = 35;
+            this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
+            this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
             // 
             // dateTimePicker1
             // 
@@ -612,8 +614,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtTotalAmount;
+        private System.Windows.Forms.TextBox txtDiscount;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
