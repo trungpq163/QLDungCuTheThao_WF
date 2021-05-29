@@ -372,11 +372,6 @@ as
 	end
 go
 
-select * from Employee;
-select * from sys.sysmembers;
-select * from sys.sysusers;
-go
-
 create procedure sp_XoaTaiKhoan (@Username nvarchar(20), @ID nvarchar(10))
 as
 	begin
@@ -428,9 +423,31 @@ as
 	end
 go
 
-update employee
-set employee.Branch = 1
-from [LINK2].[QuanLyDungCuTheThao].[dbo].[Employee] employee
-where employee.ID = 8
+-- thu tuc danh sach chi tiet bill 
+create procedure sp_GetAllBillDetail
+as
+	begin
+		select Bill.ID, ProductDetail.ProductDescription, 
+		Bill.Customer, Bill.PhoneNumber, Bill.TotalAmount,
+		BillDetail.Quantity, BillDetail.CurrentUnitPrice,
+		Employee.FullName as 'Employee', Employee.Position, Employee.Branch,
+		Bill.CheckoutDate
+		from [LINK].[QuanLyDungCuTheThao].[dbo].[BillDetail] BillDetail
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Bill] Bill on BillDetail.Bill = Bill.ID
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Employee] Employee on Employee.ID = Bill.Employee
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[ProductDetail] ProductDetail on ProductDetail.ID = BillDetail.ProductDetail
+		
+		UNION ALL
+		
+		select Bill.ID, ProductDetail.ProductDescription, 
+		Bill.Customer, Bill.PhoneNumber, Bill.TotalAmount,
+		BillDetail.Quantity, BillDetail.CurrentUnitPrice,
+		Employee.FullName as 'Employee', Employee.Position, Employee.Branch,
+		Bill.CheckoutDate
+		from BillDetail 
+		join Bill on BillDetail.Bill = Bill.ID
+		join Employee on Employee.ID = Bill.Employee
+		join ProductDetail on ProductDetail.ID = BillDetail.ProductDetail;
+	end
+go
 
-select * from Employee;
