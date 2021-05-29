@@ -1,5 +1,6 @@
 ﻿using QLDungCuTheThao.Controllers;
 using QLDungCuTheThao.EntityDataModel;
+using QLDungCuTheThao.Forms;
 using QLDungCuTheThao.Models;
 using QLDungCuTheThao.Services.ChuyenChiNhanh;
 using QLDungCuTheThao.Services.Employees;
@@ -325,6 +326,21 @@ namespace QLDungCuTheThao
         {
             this.Refresh();
             Application.DoEvents();
+        }
+
+
+
+        private void productToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void billsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvoiceManagementForm form = new InvoiceManagementForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
         }
     }
 }

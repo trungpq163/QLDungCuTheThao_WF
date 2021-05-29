@@ -40,7 +40,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmiManage = new System.Windows.Forms.ToolStripMenuItem();
             this.productToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.employeesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.billsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listItemsSoldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BestSellingItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,7 +154,7 @@
             // 
             this.tsmiManage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.productToolStripMenuItem,
-            this.employeesToolStripMenuItem});
+            this.billsToolStripMenuItem});
             this.tsmiManage.Name = "tsmiManage";
             this.tsmiManage.Size = new System.Drawing.Size(91, 27);
             this.tsmiManage.Text = "Quản lý";
@@ -162,14 +162,16 @@
             // productToolStripMenuItem
             // 
             this.productToolStripMenuItem.Name = "productToolStripMenuItem";
-            this.productToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.productToolStripMenuItem.Text = "Sản phẩm";
+            this.productToolStripMenuItem.Click += new System.EventHandler(this.productToolStripMenuItem_Click);
             // 
-            // employeesToolStripMenuItem
+            // billsToolStripMenuItem
             // 
-            this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
-            this.employeesToolStripMenuItem.Text = "Hóa đơn";
+            this.billsToolStripMenuItem.Name = "billsToolStripMenuItem";
+            this.billsToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.billsToolStripMenuItem.Text = "Hóa đơn";
+            this.billsToolStripMenuItem.Click += new System.EventHandler(this.billsToolStripMenuItem_Click);
             // 
             // accountToolStripMenuItem
             // 
@@ -470,7 +472,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiManage;
         private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem employeesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem billsToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pbExit;
