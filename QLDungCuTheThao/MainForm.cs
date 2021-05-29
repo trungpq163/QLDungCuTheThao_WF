@@ -31,6 +31,8 @@ namespace QLDungCuTheThao
         private string _size = "";
         private int _quantity = 0;
 
+        DataTable dgvChiTietSPTable = new DataTable();
+
 
         public MainForm(IUnitOfWork unitOfWork)
         {
@@ -53,6 +55,7 @@ namespace QLDungCuTheThao
                 var dataProducts = _productsService.GetAll().ToList();
 
                 loadDatagrvProducts(dataProductsDetail);
+                LoadDgVBillChiTietSP();
 
                 loadStatusStrip(employeeProfile);
 
@@ -200,7 +203,7 @@ namespace QLDungCuTheThao
 
                 if (currentMouseOverRow >= 0)
                 {
-                    m.MenuItems.Add(new MenuItem("", ShowDialogForSure100Percent));
+                    m.MenuItems.Add(new MenuItem("Thêm sản phẩm vào hóa đơn", ShowDialogForSure100Percent));
                 }
 
                 m.Show(dgvProduct, new Point(e.X, e.Y));
@@ -208,17 +211,36 @@ namespace QLDungCuTheThao
         }
 
         private void ShowDialogForSure100Percent(object sender, EventArgs e)
-        {
+        { 
+            var employeeProfile = _empService.GetAll().ToList().Find(x => Utils.FullNameToUserName(Utils.RemoveDiacritics(x.FullName)) == WorkingContext.Instance.CurrentLoginName);
+
+            if (employeeProfile.Position.ToString() == "Giám đốc chi nhánh")
+            {
+                MessageBox.Show("Bạn phải là Quản Lý hoặc Nhân Viên mới có thể thực hiện tác vụ này!");
+                return;
+            }
+
+            DialogResult dialog = MessageBox.Show("Bạn có chắc chắc không?");
+
+            if (dialog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Cancel thanh cong! ^^");
+                return;
+            }
+
+            if (dialog == DialogResult.OK)
+            {
+                MenuItem_AddBill_Click(sender, e);
+            }
 
         }
 
-        private void Menu_Click()
+        private void MenuItem_AddBill_Click(object sender, EventArgs e)
         {
             if (_productDetailId == 0
                 || _productName == ""
                 || _productDetail == ""
                 || _price == 0
-                || _size == ""
                 || _quantity == 0
             )
             {
@@ -228,13 +250,42 @@ namespace QLDungCuTheThao
 
             try
             {
+                for (int i = 0; i < dgvChiTietSP.Rows.Count; i++)
+                {
+                    var data = dgvChiTietSP.Rows[i].Cells["ID"].FormattedValue.ToString();
 
+                    if (data == _productDetailId.ToString())
+                    {
+                        MessageBox.Show("Bạn đã thêm sản phẩm này!");
+                        return;
+                    }
+                }
+
+                dgvChiTietSPTable.Rows.Add(_productDetailId, _productDetail, _productDetail, 1, _price, _size);
+                MessageBox.Show("Bạn đã thêm thành công!");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Loi" + ex.Message.ToString());
                 return;
             }
+        }
+
+        private void LoadDgVBillChiTietSP()
+        {
+            dgvChiTietSPTable.Columns.Add("ID", typeof(int));
+            dgvChiTietSPTable.Columns.Add("Tên sản phẩm", typeof(string));
+            dgvChiTietSPTable.Columns.Add("Chi tiết sản phẩm", typeof(string));
+            dgvChiTietSPTable.Columns.Add("Số lượng đặt hàng", typeof(int));
+            dgvChiTietSPTable.Columns.Add("Giá", typeof(int));
+            dgvChiTietSPTable.Columns.Add("Size", typeof(string));
+
+            dgvChiTietSP.DataSource = dgvChiTietSPTable;
+        }
+
+        private void dgvChiTietSP_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+           
         }
     }
 }

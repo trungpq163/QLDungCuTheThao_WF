@@ -340,6 +340,7 @@
             this.dgvChiTietSP.RowTemplate.Height = 24;
             this.dgvChiTietSP.Size = new System.Drawing.Size(504, 346);
             this.dgvChiTietSP.TabIndex = 30;
+            this.dgvChiTietSP.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChiTietSP_CellValidated);
             // 
             // nudQuantity
             // 
