@@ -5,6 +5,7 @@ using QLDungCuTheThao.Models;
 using QLDungCuTheThao.Services.Employees;
 using QLDungCuTheThao.Services.Products;
 using QLDungCuTheThao.Services.ProductsDetail;
+using QLDungCuTheThao.Services.ThemBill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace QLDungCuTheThao
         private IEmployeeService _empService;
         private IProductsDetailService _productsDetailService;
         private IProductsService _productsService;
+        private IThemBillService _themBillService;
 
         private int _productDetailId = 0;
         private string _productName = "";
@@ -42,6 +44,7 @@ namespace QLDungCuTheThao
             _empService = new EmployeeService(_unitOfWork);
             _productsDetailService = new ProductsDetailService(_unitOfWork);
             _productsService = new ProductsService(_unitOfWork);
+            _themBillService = new ThemBillService(_unitOfWork);
 
             InitializeComponent();
         }
@@ -321,9 +324,16 @@ namespace QLDungCuTheThao
                 int discount = Int32.Parse(txtDiscount.Text.ToString());
                 if (_totalAmount > 0 && discount > 0)
                 {
-                    _totalAmount = _totalAmount - discount;
-                    txtTotalAmount.Text = _totalAmount.ToString();
+                    int total = _totalAmount - discount;
+                    txtTotalAmount.Text = total.ToString();
+                    return;
                 }
+            }
+
+            if (txtDiscount.Text == "")
+            {
+                LoadAutomaticBilling();
+                return;
             }
         }
 
@@ -334,6 +344,64 @@ namespace QLDungCuTheThao
             dgvChiTietSP.Rows.RemoveAt(0);
             txtDiscount.Text = "";
             txtTotalAmount.Text = "0";
+        }
+
+        private void btnCheckout_Click(object sender, EventArgs e)
+        {
+            var dataEmployees = _empService.GetAll().ToList();
+            var employeeProfile = dataEmployees.Find(x => Utils.FullNameToUserName(Utils.RemoveDiacritics(x.FullName)) == WorkingContext.Instance.CurrentLoginName);
+
+            if (txtHoTenKH.Text == "" || txtSoDienThoai.Text == "" 
+                || txtDiscount.Text == "" || _totalAmount == 0 || 
+                _productDetailId == 0 || _quantityOrder == 0 || _price == 0
+            )
+            {
+                MessageBox.Show("Vui lòng nhập đủ thông tin!");
+                return;
+            }
+            try
+            {
+                int employeeId = Int32.Parse(employeeProfile.ID.ToString());
+                string customer = txtHoTenKH.Text.ToString();
+                string checkoutDate = datePickerNgayDatHang.Value.ToString();
+                int phoneNumber = Int32.Parse(txtSoDienThoai.Text.ToString());
+                int discount = Int32.Parse(txtDiscount.Text.ToString());
+                int totalAmount = Int32.Parse(txtTotalAmount.Text.ToString());
+                int productDetailId = _productDetailId;
+                int quantityOrder = _quantityOrder;
+                int currentUnitPrice = _price;
+                string branch = WorkingContext.Instance.CurrentBranch;
+
+                var themBill = _themBillService.ThemBill(
+                        employeeId, 
+                        customer,
+                        checkoutDate,
+                        phoneNumber,
+                        discount,
+                        totalAmount,
+                        productDetailId,
+                        quantityOrder,
+                        currentUnitPrice
+                    );
+                if (themBill.Result == 0)
+                {
+                    MessageBox.Show("Them Bill that bai!");
+                    return;
+                }
+
+                if (themBill.Result == 1)
+                {
+                    MessageBox.Show("Them Bill thanh cong! ^^");
+                    InvoiceForm form = new InvoiceForm(_unitOfWork, customer, phoneNumber, branch, checkoutDate, quantityOrder, _productDetail, currentUnitPrice, discount, totalAmount);
+                    this.Hide();
+                    form.ShowDialog();
+                    this.Close();
+                    return;
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Loi", ex.Message.ToString());
+            }
         }
     }
 }

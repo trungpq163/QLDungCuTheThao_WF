@@ -64,7 +64,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.txtDiscount = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.datePickerNgayDatHang = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -409,7 +409,7 @@
             // 
             this.groupBox3.Controls.Add(this.txtTotalAmount);
             this.groupBox3.Controls.Add(this.txtDiscount);
-            this.groupBox3.Controls.Add(this.dateTimePicker1);
+            this.groupBox3.Controls.Add(this.datePickerNgayDatHang);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.label6);
@@ -438,12 +438,12 @@
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             this.txtDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDiscount_KeyPress);
             // 
-            // dateTimePicker1
+            // datePickerNgayDatHang
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(166, 26);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(355, 25);
-            this.dateTimePicker1.TabIndex = 34;
+            this.datePickerNgayDatHang.Location = new System.Drawing.Point(166, 26);
+            this.datePickerNgayDatHang.Name = "datePickerNgayDatHang";
+            this.datePickerNgayDatHang.Size = new System.Drawing.Size(355, 25);
+            this.datePickerNgayDatHang.TabIndex = 34;
             // 
             // label8
             // 
@@ -503,6 +503,7 @@
             this.btnCheckout.TabIndex = 24;
             this.btnCheckout.Text = "Thanh toán";
             this.btnCheckout.UseVisualStyleBackColor = false;
+            this.btnCheckout.Click += new System.EventHandler(this.btnCheckout_Click);
             // 
             // statusStrip2
             // 
@@ -617,7 +618,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtTotalAmount;
         private System.Windows.Forms.TextBox txtDiscount;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker datePickerNgayDatHang;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnCheckout;
         private System.Windows.Forms.TextBox txtSoDienThoai;
