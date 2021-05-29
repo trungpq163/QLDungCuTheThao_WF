@@ -253,22 +253,25 @@ namespace QLDungCuTheThao
 
             try
             {
-                for (int i = 0; i < dgvChiTietSP.Rows.Count; i++)
-                {
-                    var data = dgvChiTietSP.Rows[i].Cells["ID"].FormattedValue.ToString();
+                var data = dgvChiTietSP.Rows[0].Cells["ID"].FormattedValue.ToString();
 
-                    if (data == _productDetailId.ToString())
-                    {
-                        dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value = Int32.Parse(dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value.ToString()) + 1;
-                        _quantityOrder = Int32.Parse(dgvChiTietSP.Rows[i].Cells["Số lượng đặt hàng"].Value.ToString());
-                        MessageBox.Show("Bạn đã thêm thành công!");
-                        LoadAutomaticBilling();
-                        return;
-                    }
+                if (data == _productDetailId.ToString())
+                {
+                    dgvChiTietSP.Rows[0].Cells["Số lượng đặt hàng"].Value = Int32.Parse(dgvChiTietSP.Rows[0].Cells["Số lượng đặt hàng"].Value.ToString()) + 1;
+                    _quantityOrder = Int32.Parse(dgvChiTietSP.Rows[0].Cells["Số lượng đặt hàng"].Value.ToString());
+                    MessageBox.Show("Bạn đã thêm thành công!");
+                    LoadAutomaticBilling();
+                    return;
+                }
+
+                if (dgvChiTietSP.Rows.Count > 1)
+                {
+                    MessageBox.Show("Bạn chỉ có thể thêm một sản phẩm");
+                    return;
                 }
 
                 dgvChiTietSPTable.Rows.Add(_productDetailId, _productDetail, _productDetail, 1, _price, _size);
-                _quantityOrder = 1;
+                _quantityOrder = Int32.Parse(dgvChiTietSP.Rows[0].Cells["Số lượng đặt hàng"].Value.ToString());
                 LoadAutomaticBilling();
 
                 MessageBox.Show("Bạn đã thêm thành công!");
@@ -294,7 +297,7 @@ namespace QLDungCuTheThao
 
         private void LoadAutomaticBilling()
         {
-            _totalAmount = _totalAmount + (_price * 1);
+            _totalAmount = _price * _quantityOrder;
             txtTotalAmount.Text = _totalAmount.ToString();
         }
 
@@ -322,6 +325,15 @@ namespace QLDungCuTheThao
                     txtTotalAmount.Text = _totalAmount.ToString();
                 }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            txtHoTenKH.Text = "";
+            txtSoDienThoai.Text = "";
+            dgvChiTietSP.Rows.RemoveAt(0);
+            txtDiscount.Text = "";
+            txtTotalAmount.Text = "0";
         }
     }
 }
