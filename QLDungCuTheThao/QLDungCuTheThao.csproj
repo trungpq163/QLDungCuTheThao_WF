@@ -104,6 +104,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetAllBillDetailModel.cs" />
     <Compile Include="Models\GetAllNhanVienModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
@@ -116,6 +117,8 @@
     <Compile Include="Services\Common\ICrudService.cs" />
     <Compile Include="Services\Employees\EmployeeService.cs" />
     <Compile Include="Services\Employees\IEmployeeService.cs" />
+    <Compile Include="Services\GetAllBillDetail\GetAllBillDetailService.cs" />
+    <Compile Include="Services\GetAllBillDetail\IGetAllBillDetailService.cs" />
     <Compile Include="Services\GetAllNhanVien\GetAllNhanVienService.cs" />
     <Compile Include="Services\GetAllNhanVien\IGetAllNhanVienService.cs" />
     <Compile Include="Services\ProductsDetail\IProductsDetailService.cs" />
