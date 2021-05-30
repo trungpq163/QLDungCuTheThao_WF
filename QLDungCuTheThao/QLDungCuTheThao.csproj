@@ -92,6 +92,12 @@
     <Compile Include="Forms\InvoiceManagementForm.Designer.cs">
       <DependentUpon>InvoiceManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\NhanVienManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NhanVienManagementForm.Designer.cs">
+      <DependentUpon>NhanVienManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ProductManagementForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,8 @@
     <Compile Include="Models\GetAllBillDetailModel.cs" />
     <Compile Include="Models\GetAllNhanVienModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\NhanVienBanMatHangNhieuNhatModel.cs" />
+    <Compile Include="Models\NhanVienKhongBanDuocHangModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
     <Compile Include="Models\TopMatHangBanChayModel.cs" />
@@ -135,6 +143,10 @@
     <Compile Include="Services\GetAllBillDetail\IGetAllBillDetailService.cs" />
     <Compile Include="Services\GetAllNhanVien\GetAllNhanVienService.cs" />
     <Compile Include="Services\GetAllNhanVien\IGetAllNhanVienService.cs" />
+    <Compile Include="Services\NhanVienBanMatHangNhieuNhat\INhanVienBanMatHangNhieuNhatService.cs" />
+    <Compile Include="Services\NhanVienBanMatHangNhieuNhat\NhanVienBanMatHangNhieuNhatService.cs" />
+    <Compile Include="Services\NhanVienKhongBanDuocHang\INhanVienKhongBanDuocHangService.cs" />
+    <Compile Include="Services\NhanVienKhongBanDuocHang\NhanVienKhongBanDuocHangService.cs" />
     <Compile Include="Services\ProductCategories\IProductCategoryService.cs" />
     <Compile Include="Services\ProductCategories\ProductCategoryService.cs" />
     <Compile Include="Services\ProductsDetail\IProductsDetailService.cs" />
@@ -172,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InvoiceManagementForm.resx">
       <DependentUpon>InvoiceManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NhanVienManagementForm.resx">
+      <DependentUpon>NhanVienManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>

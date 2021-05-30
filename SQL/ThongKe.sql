@@ -50,3 +50,24 @@ as
 			end
 	end
 go
+
+-- nhan vien ban duoc nhieu hang nhat theo chi nhanh hoac ca cong ty
+create procedure sp_NhanVien_BanMatHangNhieuNhat(@Start datetime, @End datetime)
+as
+	begin
+		select top 3 sum(BillDetail.Quantity) as 'Quantity', Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
+		from BillDetail 
+		join Bill on Bill.ID = BillDetail.Bill
+		join Employee on Bill.Employee = Employee.ID
+		where Bill.CheckoutDate >= @Start and Bill.CheckoutDate <= @End
+		group by Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
+		union all
+		select top 3 sum(BillDetail.Quantity) as 'Quantity', Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
+		from [LINK].[QuanLyDungCuTheThao].[dbo].[BillDetail] BillDetail 
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Bill] Bill on Bill.ID = BillDetail.Bill
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Employee] Employee on Bill.Employee = Employee.ID
+		where Bill.CheckoutDate >= @Start and Bill.CheckoutDate <= @End
+		group by Employee.FullName, Employee.Address, Employee.PhoneNumber, Employee.Position, Employee.Branch, Employee.Salary
+		order by Quantity desc;
+	end
+go

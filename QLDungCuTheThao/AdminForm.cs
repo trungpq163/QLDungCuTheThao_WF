@@ -353,5 +353,13 @@ namespace QLDungCuTheThao
             form.ShowDialog();
             this.Close();
         }
+
+        private void employeeSellingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NhanVienManagementForm form = new NhanVienManagementForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

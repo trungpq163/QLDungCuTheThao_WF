@@ -204,6 +204,7 @@
             this.employeeSellingToolStripMenuItem.Name = "employeeSellingToolStripMenuItem";
             this.employeeSellingToolStripMenuItem.Size = new System.Drawing.Size(417, 28);
             this.employeeSellingToolStripMenuItem.Text = "Nhân viên";
+            this.employeeSellingToolStripMenuItem.Click += new System.EventHandler(this.employeeSellingToolStripMenuItem_Click);
             // 
             // quantityOfInventoryToolStripMenuItem
             // 
