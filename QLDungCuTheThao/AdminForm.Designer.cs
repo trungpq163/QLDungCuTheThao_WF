@@ -162,14 +162,14 @@
             // productToolStripMenuItem
             // 
             this.productToolStripMenuItem.Name = "productToolStripMenuItem";
-            this.productToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.productToolStripMenuItem.Text = "Sản phẩm";
             this.productToolStripMenuItem.Click += new System.EventHandler(this.productToolStripMenuItem_Click);
             // 
             // billsToolStripMenuItem
             // 
             this.billsToolStripMenuItem.Name = "billsToolStripMenuItem";
-            this.billsToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.billsToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.billsToolStripMenuItem.Text = "Hóa đơn";
             this.billsToolStripMenuItem.Click += new System.EventHandler(this.billsToolStripMenuItem_Click);
             // 
@@ -197,6 +197,7 @@
             this.BestSellingItemsToolStripMenuItem.Name = "BestSellingItemsToolStripMenuItem";
             this.BestSellingItemsToolStripMenuItem.Size = new System.Drawing.Size(417, 28);
             this.BestSellingItemsToolStripMenuItem.Text = "Sản phẩm bán chạy nhất";
+            this.BestSellingItemsToolStripMenuItem.Click += new System.EventHandler(this.BestSellingItemsToolStripMenuItem_Click);
             // 
             // employeeSellingToolStripMenuItem
             // 

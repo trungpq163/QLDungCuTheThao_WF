@@ -98,6 +98,12 @@
     <Compile Include="Forms\ProductManagementForm.Designer.cs">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TopMatHangBanChayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TopMatHangBanChayForm.Designer.cs">
+      <DependentUpon>TopMatHangBanChayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\TopMatHangBanChayModel.cs" />
     <Compile Include="Models\XemTatCaSPModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +149,8 @@
     <Compile Include="Services\ThemBill\ThemBillService.cs" />
     <Compile Include="Services\ThemSanPham\IThemSanPhamService.cs" />
     <Compile Include="Services\ThemSanPham\ThemSanPhamService.cs" />
+    <Compile Include="Services\TopMatHangBanChay\ITopMatHangBanChayService.cs" />
+    <Compile Include="Services\TopMatHangBanChay\TopMatHangBanChayService.cs" />
     <Compile Include="Services\XemTatCaSP\IXemTatCaSPService.cs" />
     <Compile Include="Services\XemTatCaSP\XemTatCaSPService.cs" />
     <Compile Include="Services\XoaBill\IXoaBillService.cs" />
@@ -166,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TopMatHangBanChayForm.resx">
+      <DependentUpon>TopMatHangBanChayForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

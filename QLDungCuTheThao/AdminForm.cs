@@ -345,5 +345,13 @@ namespace QLDungCuTheThao
             form.ShowDialog();
             this.Close();
         }
+
+        private void BestSellingItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TopMatHangBanChayForm form = new TopMatHangBanChayForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }
