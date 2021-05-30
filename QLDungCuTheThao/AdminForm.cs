@@ -332,7 +332,10 @@ namespace QLDungCuTheThao
 
         private void productToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ProductManagementForm form = new ProductManagementForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
         }
 
         private void billsToolStripMenuItem_Click(object sender, EventArgs e)

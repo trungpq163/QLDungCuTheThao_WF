@@ -92,6 +92,12 @@
     <Compile Include="Forms\InvoiceManagementForm.Designer.cs">
       <DependentUpon>InvoiceManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ProductManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductManagementForm.Designer.cs">
+      <DependentUpon>ProductManagementForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\XemTatCaSPModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ChuyenChiNhanh\ChuyenChiNhanhService.cs" />
@@ -121,6 +128,8 @@
     <Compile Include="Services\GetAllBillDetail\IGetAllBillDetailService.cs" />
     <Compile Include="Services\GetAllNhanVien\GetAllNhanVienService.cs" />
     <Compile Include="Services\GetAllNhanVien\IGetAllNhanVienService.cs" />
+    <Compile Include="Services\ProductCategories\IProductCategoryService.cs" />
+    <Compile Include="Services\ProductCategories\ProductCategoryService.cs" />
     <Compile Include="Services\ProductsDetail\IProductsDetailService.cs" />
     <Compile Include="Services\ProductsDetail\ProductsDetailService.cs" />
     <Compile Include="Services\Products\IProductsService.cs" />
@@ -131,8 +140,14 @@
     <Compile Include="Services\TaoTaiKhoan\TaoTaiKhoanService.cs" />
     <Compile Include="Services\ThemBill\IThemBillService.cs" />
     <Compile Include="Services\ThemBill\ThemBillService.cs" />
+    <Compile Include="Services\ThemSanPham\IThemSanPhamService.cs" />
+    <Compile Include="Services\ThemSanPham\ThemSanPhamService.cs" />
+    <Compile Include="Services\XemTatCaSP\IXemTatCaSPService.cs" />
+    <Compile Include="Services\XemTatCaSP\XemTatCaSPService.cs" />
     <Compile Include="Services\XoaBill\IXoaBillService.cs" />
     <Compile Include="Services\XoaBill\XoaBillService.cs" />
+    <Compile Include="Services\XoaSanPham\IXoaSanPhamService.cs" />
+    <Compile Include="Services\XoaSanPham\XoaSanPhamService.cs" />
     <Compile Include="Services\XoaTaiKhoan\IXoaTaiKhoanService.cs" />
     <Compile Include="Services\XoaTaiKhoan\XoaTaiKhoanService.cs" />
     <Compile Include="Utils.cs" />
@@ -148,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InvoiceManagementForm.resx">
       <DependentUpon>InvoiceManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductManagementForm.resx">
+      <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
