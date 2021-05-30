@@ -131,6 +131,8 @@
     <Compile Include="Services\TaoTaiKhoan\TaoTaiKhoanService.cs" />
     <Compile Include="Services\ThemBill\IThemBillService.cs" />
     <Compile Include="Services\ThemBill\ThemBillService.cs" />
+    <Compile Include="Services\XoaBill\IXoaBillService.cs" />
+    <Compile Include="Services\XoaBill\XoaBillService.cs" />
     <Compile Include="Services\XoaTaiKhoan\IXoaTaiKhoanService.cs" />
     <Compile Include="Services\XoaTaiKhoan\XoaTaiKhoanService.cs" />
     <Compile Include="Utils.cs" />

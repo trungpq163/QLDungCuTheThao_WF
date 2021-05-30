@@ -3,6 +3,7 @@ using QLDungCuTheThao.Models;
 using QLDungCuTheThao.Services.Employees;
 using QLDungCuTheThao.Services.GetAllBillDetail;
 using QLDungCuTheThao.Services.GetAllNhanVien;
+using QLDungCuTheThao.Services.XoaBill;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,9 @@ namespace QLDungCuTheThao.Forms
         private IEmployeeService _empService;
         private IGetAllBillDetailService _allBillDetail;
         private IGetAllNhanVienService _allEmployeeService;
+        private IXoaBillService _xoaBillService;
+
+        private int _billID = 0;
 
         public InvoiceManagementForm(IUnitOfWork unitOfWork)
         {
@@ -28,6 +32,7 @@ namespace QLDungCuTheThao.Forms
             _empService = new EmployeeService(_unitOfWork);
             _allBillDetail = new GetAllBillDetailService(_unitOfWork);
             _allEmployeeService =  new GetAllNhanVienService(_unitOfWork);
+            _xoaBillService = new XoaBillService(_unitOfWork);
 
             InitializeComponent();
         }
@@ -130,6 +135,87 @@ namespace QLDungCuTheThao.Forms
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             LoadAllBillData();
+        }
+
+        private void dgvDSHoaDon_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                int currentMouseOverRow = dgvDSHoaDon.HitTest(e.X, e.Y).RowIndex;
+
+
+                if (currentMouseOverRow >= 0)
+                {
+                    m.MenuItems.Add(new MenuItem("Xóa hóa đơn này!", ShowDialogForSure100Percent));
+                }
+
+                m.Show(dgvDSHoaDon, new Point(e.X, e.Y));
+            }
+        }
+
+        private void ShowDialogForSure100Percent(object sender, EventArgs e)
+        {
+            var employeeProfile = _empService.GetAll().ToList().Find(x => Utils.FullNameToUserName(Utils.RemoveDiacritics(x.FullName)) == WorkingContext.Instance.CurrentLoginName);
+
+            if (employeeProfile.Position.ToString() == "Giám đốc chi nhánh")
+            {
+                MessageBox.Show("Bạn phải là Quản Lý mới có thể thực hiện tác vụ này!");
+                return;
+            }
+
+            DialogResult dialog = MessageBox.Show("Bạn có chắc chắc không?");
+
+            if (dialog == DialogResult.Cancel)
+            {
+                MessageBox.Show("Cancel thanh cong! ^^");
+                return;
+            }
+
+            if (dialog == DialogResult.OK)
+            {
+                MenuItem_DeleteBill_Click(sender, e);
+            }
+        }
+
+        private void MenuItem_DeleteBill_Click(object sender, EventArgs e)
+        {
+            if (_billID == 0)
+            {
+                MessageBox.Show("Vui lòng chọn tất cả hàng thuộc hóa đơn đó, trước khi thực hiện tác vụ này!");
+                return;
+            }
+
+            try
+            {
+                var xoaBill = _xoaBillService.XoaBill(_billID);
+                if (xoaBill.Result == 0)
+                {
+                    MessageBox.Show("Xóa bill thất bại!");
+                    return;
+                }
+
+                if (xoaBill.Result == 1)
+                {
+                    MessageBox.Show("Xóa bill thành công! ^^");
+                    LoadAllBillData();
+                    return;
+                }
+            } catch (Exception ex)
+            {
+                MessageBox.Show("Loi" + ex.Message.ToString());
+                return;
+            }
+        }
+
+        private void dgvDSHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvDSHoaDon.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
+            {
+                dgvDSHoaDon.CurrentRow.Selected = true;
+
+                _billID = Int32.Parse(dgvDSHoaDon.Rows[e.RowIndex].Cells["ID"].FormattedValue.ToString());
+            }
         }
     }
 }

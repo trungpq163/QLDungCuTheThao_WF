@@ -33,11 +33,6 @@
             this.pbExit = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvDSHoaDon = new System.Windows.Forms.DataGridView();
-            this.btnReload = new System.Windows.Forms.Button();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbbBranch = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +44,11 @@
             this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Branch = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CheckoutDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReload = new System.Windows.Forms.Button();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbbBranch = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSHoaDon)).BeginInit();
@@ -109,65 +109,8 @@
             this.dgvDSHoaDon.RowTemplate.Height = 24;
             this.dgvDSHoaDon.Size = new System.Drawing.Size(1368, 627);
             this.dgvDSHoaDon.TabIndex = 31;
-            // 
-            // btnReload
-            // 
-            this.btnReload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnReload.FlatAppearance.BorderSize = 0;
-            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReload.Font = new System.Drawing.Font(".Helvetica NeueUI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnReload.ForeColor = System.Drawing.Color.White;
-            this.btnReload.Location = new System.Drawing.Point(1154, 127);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(266, 36);
-            this.btnReload.TabIndex = 34;
-            this.btnReload.Text = "Tải lại";
-            this.btnReload.UseVisualStyleBackColor = false;
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Font = new System.Drawing.Font(".Helvetica NeueUI", 13.8F);
-            this.txtSearch.Location = new System.Drawing.Point(52, 128);
-            this.txtSearch.Multiline = true;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(835, 35);
-            this.txtSearch.TabIndex = 33;
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font(".Helvetica NeueUI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(52, 104);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(300, 20);
-            this.label2.TabIndex = 32;
-            this.label2.Text = "Tìm kiếm theo ID hoặc tên khách hàng";
-            // 
-            // cbbBranch
-            // 
-            this.cbbBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbBranch.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
-            this.cbbBranch.FormattingEnabled = true;
-            this.cbbBranch.Items.AddRange(new object[] {
-            "Bùi Thị Xuân",
-            "Hòa Bình"});
-            this.cbbBranch.Location = new System.Drawing.Point(923, 128);
-            this.cbbBranch.Name = "cbbBranch";
-            this.cbbBranch.Size = new System.Drawing.Size(216, 23);
-            this.cbbBranch.TabIndex = 36;
-            this.cbbBranch.SelectionChangeCommitted += new System.EventHandler(this.cbbBranch_SelectionChangeCommitted);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font(".Helvetica NeueUI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(919, 104);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 20);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "Chi nhánh";
+            this.dgvDSHoaDon.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSHoaDon_CellClick);
+            this.dgvDSHoaDon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvDSHoaDon_MouseClick);
             // 
             // ID
             // 
@@ -237,6 +180,65 @@
             this.CheckoutDate.DataPropertyName = "CheckoutDate";
             this.CheckoutDate.HeaderText = "Ngày đặt hàng";
             this.CheckoutDate.Name = "CheckoutDate";
+            // 
+            // btnReload
+            // 
+            this.btnReload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnReload.FlatAppearance.BorderSize = 0;
+            this.btnReload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReload.Font = new System.Drawing.Font(".Helvetica NeueUI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnReload.ForeColor = System.Drawing.Color.White;
+            this.btnReload.Location = new System.Drawing.Point(1154, 127);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(266, 36);
+            this.btnReload.TabIndex = 34;
+            this.btnReload.Text = "Tải lại";
+            this.btnReload.UseVisualStyleBackColor = false;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Font = new System.Drawing.Font(".Helvetica NeueUI", 13.8F);
+            this.txtSearch.Location = new System.Drawing.Point(52, 128);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(835, 35);
+            this.txtSearch.TabIndex = 33;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font(".Helvetica NeueUI", 10.2F);
+            this.label2.Location = new System.Drawing.Point(52, 104);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(300, 20);
+            this.label2.TabIndex = 32;
+            this.label2.Text = "Tìm kiếm theo ID hoặc tên khách hàng";
+            // 
+            // cbbBranch
+            // 
+            this.cbbBranch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbBranch.Font = new System.Drawing.Font(".Helvetica NeueUI", 7.8F);
+            this.cbbBranch.FormattingEnabled = true;
+            this.cbbBranch.Items.AddRange(new object[] {
+            "Bùi Thị Xuân",
+            "Hòa Bình"});
+            this.cbbBranch.Location = new System.Drawing.Point(923, 128);
+            this.cbbBranch.Name = "cbbBranch";
+            this.cbbBranch.Size = new System.Drawing.Size(216, 23);
+            this.cbbBranch.TabIndex = 36;
+            this.cbbBranch.SelectionChangeCommitted += new System.EventHandler(this.cbbBranch_SelectionChangeCommitted);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font(".Helvetica NeueUI", 10.2F);
+            this.label3.Location = new System.Drawing.Point(919, 104);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(84, 20);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Chi nhánh";
             // 
             // InvoiceManagementForm
             // 
