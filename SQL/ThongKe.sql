@@ -71,3 +71,27 @@ as
 		order by Quantity desc;
 	end
 go
+
+-- thu tuc danh sach cac mat hang da ban
+create procedure sp_DS_ChiTiet_MatHangDaBan(@Start datetime, @End datetime)
+as
+	begin
+		select Name, BillDetail.Quantity, CurrentUnitPrice, Size, ProductDescription, Price, Manufacturer from BillDetail 
+		join ProductDetail on BillDetail.ProductDetail = ProductDetail.ID
+		join Product on Product.ID = ProductDetail.Product
+		join Bill on Bill.ID = BillDetail.Bill
+		where Bill.CheckoutDate >= @Start and Bill.CheckoutDate <= @End
+	end
+go
+
+create procedure sp_SLTonKho
+as
+	begin
+		select Product.ID, Product.Name, sum(Quantity) as 'Quantity', Product.Manufacturer, ProductCategory.Name as 'ProductCategory'
+		from ProductDetail 
+		join Product on ProductDetail.Product = Product.ID
+		join ProductCategory on ProductCategory.ID = Product.ProductCategory
+		group by Product.ID, Product.Name, Product.Manufacturer, ProductCategory.Name
+	end
+go
+

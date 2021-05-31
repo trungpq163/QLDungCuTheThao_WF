@@ -191,6 +191,7 @@
             this.listItemsSoldToolStripMenuItem.Name = "listItemsSoldToolStripMenuItem";
             this.listItemsSoldToolStripMenuItem.Size = new System.Drawing.Size(417, 28);
             this.listItemsSoldToolStripMenuItem.Text = "Danh sách các mặt hàng đã bán";
+            this.listItemsSoldToolStripMenuItem.Click += new System.EventHandler(this.listItemsSoldToolStripMenuItem_Click);
             // 
             // BestSellingItemsToolStripMenuItem
             // 
@@ -211,6 +212,7 @@
             this.quantityOfInventoryToolStripMenuItem.Name = "quantityOfInventoryToolStripMenuItem";
             this.quantityOfInventoryToolStripMenuItem.Size = new System.Drawing.Size(417, 28);
             this.quantityOfInventoryToolStripMenuItem.Text = "Số lượng tồn kho";
+            this.quantityOfInventoryToolStripMenuItem.Click += new System.EventHandler(this.quantityOfInventoryToolStripMenuItem_Click);
             // 
             // quantityOfItemSellAndRevenueToolStripMenuItem
             // 

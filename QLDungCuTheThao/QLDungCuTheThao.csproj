@@ -80,6 +80,12 @@
     <Compile Include="Forms\AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ChiTietMatHangDaBanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ChiTietMatHangDaBanForm.Designer.cs">
+      <DependentUpon>ChiTietMatHangDaBanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InvoiceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +110,12 @@
     <Compile Include="Forms\ProductManagementForm.Designer.cs">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SoLuongTonKhoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SoLuongTonKhoForm.Designer.cs">
+      <DependentUpon>SoLuongTonKhoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\TopMatHangBanChayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiTietMatHangDaBanModel.cs" />
     <Compile Include="Models\GetAllBillDetailModel.cs" />
     <Compile Include="Models\GetAllNhanVienModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -129,10 +142,13 @@
     <Compile Include="Models\NhanVienKhongBanDuocHangModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\SLTonKhoModel.cs" />
     <Compile Include="Models\TopMatHangBanChayModel.cs" />
     <Compile Include="Models\XemTatCaSPModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ChiTietMatHangDaBan\ChiTietMatHangDaBanService.cs" />
+    <Compile Include="Services\ChiTietMatHangDaBan\IChiTietMatHangDaBanService.cs" />
     <Compile Include="Services\ChuyenChiNhanh\ChuyenChiNhanhService.cs" />
     <Compile Include="Services\ChuyenChiNhanh\IChuyenChiNhanhService.cs" />
     <Compile Include="Services\Common\CrudService.cs" />
@@ -155,6 +171,8 @@
     <Compile Include="Services\Products\ProductsService.cs" />
     <Compile Include="Services\Sercurity\IAuthenticateService.cs" />
     <Compile Include="Services\Sercurity\LoginService.cs" />
+    <Compile Include="Services\SLTonKho\ISLTonKhoService.cs" />
+    <Compile Include="Services\SLTonKho\SLTonKhoService.cs" />
     <Compile Include="Services\TaoTaiKhoan\ITaoTaiKhoanService.cs" />
     <Compile Include="Services\TaoTaiKhoan\TaoTaiKhoanService.cs" />
     <Compile Include="Services\ThemBill\IThemBillService.cs" />
@@ -179,6 +197,9 @@
     <EmbeddedResource Include="Forms\AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ChiTietMatHangDaBanForm.resx">
+      <DependentUpon>ChiTietMatHangDaBanForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InvoiceForm.resx">
       <DependentUpon>InvoiceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SoLuongTonKhoForm.resx">
+      <DependentUpon>SoLuongTonKhoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TopMatHangBanChayForm.resx">
       <DependentUpon>TopMatHangBanChayForm.cs</DependentUpon>

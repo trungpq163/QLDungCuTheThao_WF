@@ -361,5 +361,21 @@ namespace QLDungCuTheThao
             form.ShowDialog();
             this.Close();
         }
+
+        private void listItemsSoldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChiTietMatHangDaBanForm form = new ChiTietMatHangDaBanForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void quantityOfInventoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SoLuongTonKhoForm form = new SoLuongTonKhoForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }
