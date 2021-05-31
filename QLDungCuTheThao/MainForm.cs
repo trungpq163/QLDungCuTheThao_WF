@@ -341,9 +341,12 @@ namespace QLDungCuTheThao
         {
             txtHoTenKH.Text = "";
             txtSoDienThoai.Text = "";
-            dgvChiTietSP.Rows.RemoveAt(0);
             txtDiscount.Text = "";
             txtTotalAmount.Text = "0";
+            if (dgvChiTietSP.Rows.Count > 1)
+            {
+                dgvChiTietSP.Rows.RemoveAt(0);
+            }
         }
 
         private void btnCheckout_Click(object sender, EventArgs e)
