@@ -219,6 +219,7 @@
             this.quantityOfItemSellAndRevenueToolStripMenuItem.Name = "quantityOfItemSellAndRevenueToolStripMenuItem";
             this.quantityOfItemSellAndRevenueToolStripMenuItem.Size = new System.Drawing.Size(417, 28);
             this.quantityOfItemSellAndRevenueToolStripMenuItem.Text = "Doanh thu và số lượng hàng đã bán";
+            this.quantityOfItemSellAndRevenueToolStripMenuItem.Click += new System.EventHandler(this.quantityOfItemSellAndRevenueToolStripMenuItem_Click);
             // 
             // label1
             // 

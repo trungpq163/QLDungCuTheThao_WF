@@ -377,5 +377,13 @@ namespace QLDungCuTheThao
             form.ShowDialog();
             this.Close();
         }
+
+        private void quantityOfItemSellAndRevenueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SLHangDaBanDoanhThuForm form = new SLHangDaBanDoanhThuForm(_unitOfWork);
+            this.Hide();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

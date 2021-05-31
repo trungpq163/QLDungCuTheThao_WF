@@ -110,6 +110,12 @@
     <Compile Include="Forms\ProductManagementForm.Designer.cs">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SLHangDaBanDoanhThuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SLHangDaBanDoanhThuForm.Designer.cs">
+      <DependentUpon>SLHangDaBanDoanhThuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SoLuongTonKhoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +148,7 @@
     <Compile Include="Models\NhanVienKhongBanDuocHangModel.cs" />
     <Compile Include="Models\ProductsDetailModel.cs" />
     <Compile Include="Models\ResultModel.cs" />
+    <Compile Include="Models\SLHangDaBanDoanhThuModel.cs" />
     <Compile Include="Models\SLTonKhoModel.cs" />
     <Compile Include="Models\TopMatHangBanChayModel.cs" />
     <Compile Include="Models\XemTatCaSPModel.cs" />
@@ -171,6 +178,8 @@
     <Compile Include="Services\Products\ProductsService.cs" />
     <Compile Include="Services\Sercurity\IAuthenticateService.cs" />
     <Compile Include="Services\Sercurity\LoginService.cs" />
+    <Compile Include="Services\SLHangDaBanDoanhThu\ISLHangDaBanDoanhThuService.cs" />
+    <Compile Include="Services\SLHangDaBanDoanhThu\SLHangDaBanDoanhThuService.cs" />
     <Compile Include="Services\SLTonKho\ISLTonKhoService.cs" />
     <Compile Include="Services\SLTonKho\SLTonKhoService.cs" />
     <Compile Include="Services\TaoTaiKhoan\ITaoTaiKhoanService.cs" />
@@ -211,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProductManagementForm.resx">
       <DependentUpon>ProductManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SLHangDaBanDoanhThuForm.resx">
+      <DependentUpon>SLHangDaBanDoanhThuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SoLuongTonKhoForm.resx">
       <DependentUpon>SoLuongTonKhoForm.cs</DependentUpon>

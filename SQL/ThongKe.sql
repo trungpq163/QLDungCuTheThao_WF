@@ -95,3 +95,24 @@ as
 	end
 go
 
+-- thu tuc so luong hang da ban va doanh thu cua cua hang hoac tung chi nhanh (Bui Thi Xuan va Hoa Binh)
+create procedure sp_SL_HangDaBan_DoanhThu_Thang(@Start datetime, @End datetime)
+as
+	begin
+		select  Branch.ID, Branch.Name as 'Branch', sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
+		from BillDetail 
+		join Bill on Bill.ID = BillDetail.Bill
+		join Employee on Bill.Employee = Employee.ID
+		join Branch on Branch.ID = Employee.Branch
+		where Bill.CheckoutDate >= @Start and Bill.CheckoutDate <= @End
+		group by Branch.ID, Branch.Name
+		union all
+		select Branch.ID, Branch.Name as 'Branch', sum(Quantity) as 'SLHangDaBan', sum(Bill.TotalAmount) as 'DoanhThu' 
+		from [LINK].[QuanLyDungCuTheThao].[dbo].[BillDetail] BillDetail 
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Bill] Bill on Bill.ID = BillDetail.Bill
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Employee] Employee on Bill.Employee = Employee.ID
+		join [LINK].[QuanLyDungCuTheThao].[dbo].[Branch] Branch on Branch.ID = Employee.Branch
+		where Bill.CheckoutDate >= @Start and Bill.CheckoutDate <= @End
+		group by Branch.ID, Branch.Name;
+	end
+go
