@@ -295,7 +295,8 @@ namespace QLDungCuTheThao
                 {
                     MessageBox.Show("Chuyen thanh cong! ^^");
 
-                    var allEmployeeData2 = new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList();
+                    var allEmployeeData2 =
+                        new GetAllNhanVienService(_unitOfWork).getAllNhanVien().ToList().FindAll(x => x.ID.ToString() != txtID.Text.ToString());
                     Employee_Data_Load(allEmployeeData2);
                     Reload();
                     return;
